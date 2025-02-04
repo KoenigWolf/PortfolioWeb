@@ -3,11 +3,11 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Textarea } from '@/components/ui/form/textarea';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Mail, MessageSquare, Send } from 'lucide-react';
-import { useState, type FormEvent } from 'react';
+import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
 interface FormData {
@@ -46,6 +46,14 @@ const Contact = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
@@ -129,7 +137,7 @@ const Contact = () => {
                       id="name"
                       name="name"
                       value={formData.name}
-                      onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                      onChange={handleInputChange}
                       required
                       aria-required="true"
                       placeholder="山田 太郎"
@@ -142,7 +150,7 @@ const Contact = () => {
                       name="email"
                       type="email"
                       value={formData.email}
-                      onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                      onChange={handleInputChange}
                       required
                       aria-required="true"
                       placeholder="example@example.com"
@@ -154,7 +162,7 @@ const Contact = () => {
                       id="message"
                       name="message"
                       value={formData.message}
-                      onChange={e => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                      onChange={handleInputChange}
                       className="min-h-[120px]"
                       required
                       aria-required="true"

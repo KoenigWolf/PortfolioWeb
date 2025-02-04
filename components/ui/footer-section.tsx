@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { Textarea } from "@/components/ui/textarea"
 import {
   Tooltip,
   TooltipContent,
@@ -15,8 +14,7 @@ import {
 import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter } from "lucide-react"
 
 function Footerdemo() {
-  const [isDarkMode, setIsDarkMode] = React.useState(true)
-  const [isChatOpen, setIsChatOpen] = React.useState(false)
+  const [isDarkMode, setIsDarkMode] = React.useState(false)
 
   React.useEffect(() => {
     if (isDarkMode) {
@@ -54,22 +52,22 @@ function Footerdemo() {
           </div>
           <div>
             <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
-            <nav className="space-y-2 text-sm">
-              <a href="#" className="block transition-colors hover:text-primary">
+            <nav className="flex flex-col space-y-2">
+              <Button variant="link" className="h-auto w-fit p-0 text-foreground hover:text-primary">
                 Home
-              </a>
-              <a href="#" className="block transition-colors hover:text-primary">
+              </Button>
+              <Button variant="link" className="h-auto w-fit p-0 text-foreground hover:text-primary">
                 About Us
-              </a>
-              <a href="#" className="block transition-colors hover:text-primary">
+              </Button>
+              <Button variant="link" className="h-auto w-fit p-0 text-foreground hover:text-primary">
                 Services
-              </a>
-              <a href="#" className="block transition-colors hover:text-primary">
+              </Button>
+              <Button variant="link" className="h-auto w-fit p-0 text-foreground hover:text-primary">
                 Products
-              </a>
-              <a href="#" className="block transition-colors hover:text-primary">
+              </Button>
+              <Button variant="link" className="h-auto w-fit p-0 text-foreground hover:text-primary">
                 Contact
-              </a>
+              </Button>
             </nav>
           </div>
           <div>
@@ -155,16 +153,16 @@ function Footerdemo() {
           <p className="text-sm text-muted-foreground">
             © 2024 Your Company. All rights reserved.
           </p>
-          <nav className="flex gap-4 text-sm">
-            <a href="#" className="transition-colors hover:text-primary">
+          <nav className="flex gap-4">
+            <Button variant="link" className="h-auto w-fit p-0 text-foreground hover:text-primary">
               Privacy Policy
-            </a>
-            <a href="#" className="transition-colors hover:text-primary">
+            </Button>
+            <Button variant="link" className="h-auto w-fit p-0 text-foreground hover:text-primary">
               Terms of Service
-            </a>
-            <a href="#" className="transition-colors hover:text-primary">
+            </Button>
+            <Button variant="link" className="h-auto w-fit p-0 text-foreground hover:text-primary">
               Cookie Settings
-            </a>
+            </Button>
           </nav>
         </div>
       </div>
