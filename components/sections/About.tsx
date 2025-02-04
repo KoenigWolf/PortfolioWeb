@@ -7,16 +7,19 @@ import { Monitor, Smartphone, Lightbulb } from 'lucide-react';
 export default function About() {
   const features = [
     {
+      id: 'responsive',
       icon: <Monitor className="h-8 w-8" />,
       title: 'レスポンシブデザイン',
       description: 'あらゆるデバイスで最適な表示を実現します',
     },
     {
+      id: 'modern',
       icon: <Smartphone className="h-8 w-8" />,
       title: 'モダンな開発',
       description: '最新のフレームワークと技術を活用します',
     },
     {
+      id: 'creative',
       icon: <Lightbulb className="h-8 w-8" />,
       title: 'クリエイティブな解決策',
       description: '独創的なアプローチで課題を解決します',
@@ -40,12 +43,12 @@ export default function About() {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <motion.div
-              key={index}
+              key={feature.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: features.indexOf(feature) * 0.2 }}
               viewport={{ once: true }}
             >
               <Card className="text-center h-full">

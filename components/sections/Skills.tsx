@@ -5,12 +5,12 @@ import { Progress } from '@/components/ui/progress';
 
 export default function Skills() {
   const skills = [
-    { name: 'React/Next.js', level: 90 },
-    { name: 'TypeScript', level: 85 },
-    { name: 'TailwindCSS', level: 95 },
-    { name: 'UI/UXデザイン', level: 80 },
-    { name: 'アクセシビリティ', level: 75 },
-    { name: 'パフォーマンス最適化', level: 85 },
+    { id: 'react', name: 'React/Next.js', level: 90 },
+    { id: 'typescript', name: 'TypeScript', level: 85 },
+    { id: 'tailwind', name: 'TailwindCSS', level: 95 },
+    { id: 'uiux', name: 'UI/UXデザイン', level: 80 },
+    { id: 'accessibility', name: 'アクセシビリティ', level: 75 },
+    { id: 'performance', name: 'パフォーマンス最適化', level: 85 },
   ];
 
   return (
@@ -29,12 +29,12 @@ export default function Skills() {
           </p>
         </motion.div>
         <div className="space-y-8">
-          {skills.map((skill, index) => (
+          {skills.map((skill) => (
             <motion.div
-              key={index}
+              key={skill.id}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: skills.indexOf(skill) * 0.1 }}
               viewport={{ once: true }}
               className="space-y-2"
             >

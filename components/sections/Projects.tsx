@@ -8,18 +8,21 @@ import { ExternalLink, Github } from 'lucide-react';
 export default function Projects() {
   const projects = [
     {
+      id: 'ecommerce',
       title: 'ECサイトリニューアル',
       description: 'Next.js 13とTypeScriptを使用したモダンなECサイト',
       image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc',
       tags: ['Next.js', 'TypeScript', 'TailwindCSS'],
     },
     {
+      id: 'dashboard',
       title: 'ダッシュボード開発',
       description: 'データ可視化とリアルタイム更新機能を実装',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71',
       tags: ['React', 'Recharts', 'WebSocket'],
     },
     {
+      id: 'sns',
       title: 'SNSアプリケーション',
       description: 'インタラクティブなSNSプラットフォーム',
       image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7',
@@ -43,12 +46,12 @@ export default function Projects() {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div
-              key={index}
+              key={project.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: projects.indexOf(project) * 0.2 }}
               viewport={{ once: true }}
             >
               <Card className="overflow-hidden h-full flex flex-col">
