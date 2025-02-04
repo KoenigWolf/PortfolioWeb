@@ -5,11 +5,55 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 import { Mail, MessageSquare, Send } from 'lucide-react';
+import { useState, type FormEvent } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
-export default function Contact() {
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // フォーム送信処理をここに実装
+      await new Promise(resolve => setTimeout(resolve, 1000)); // 仮の遅延
+      toast({
+        title: '送信完了',
+        description: 'メッセージを受け付けました。',
+      });
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast({
+        title: 'エラー',
+        description: '送信に失敗しました。再度お試しください。',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <section className="py-20 px-4 bg-accent">
+    <section 
+      className="py-20 px-4 bg-accent"
+      aria-label="お問い合わせ"
+      id="contact"
+    >
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -34,10 +78,17 @@ export default function Contact() {
             <Card>
               <CardContent className="pt-6">
                 <div className="flex items-center gap-4">
-                  <Mail className="h-6 w-6" />
+                  <Mail className="h-6 w-6" aria-hidden="true" />
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-muted-foreground">contact@example.com</p>
+                    <a 
+                      href="mailto:contact@example.com"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                      tabIndex={0}
+                      aria-label="メールを送信する"
+                    >
+                      contact@example.com
+                    </a>
                   </div>
                 </div>
               </CardContent>
@@ -45,10 +96,19 @@ export default function Contact() {
             <Card>
               <CardContent className="pt-6">
                 <div className="flex items-center gap-4">
-                  <MessageSquare className="h-6 w-6" />
+                  <MessageSquare className="h-6 w-6" aria-hidden="true" />
                   <div>
                     <h3 className="font-semibold">SNS</h3>
-                    <p className="text-muted-foreground">@username</p>
+                    <a 
+                      href="https://twitter.com/username"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                      tabIndex={0}
+                      aria-label="Twitterプロフィールを開く"
+                    >
+                      @username
+                    </a>
                   </div>
                 </div>
               </CardContent>
@@ -62,22 +122,52 @@ export default function Contact() {
           >
             <Card>
               <CardContent className="pt-6">
-                <form className="space-y-4">
-                  <div>
-                    <Input placeholder="お名前" />
-                  </div>
-                  <div>
-                    <Input type="email" placeholder="メールアドレス" />
-                  </div>
-                  <div>
-                    <Textarea
-                      placeholder="メッセージ"
-                      className="min-h-[120px]"
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">お名前 <span className="text-destructive">*</span></Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                      required
+                      aria-required="true"
+                      placeholder="山田 太郎"
                     />
                   </div>
-                  <Button className="w-full">
-                    <Send className="h-4 w-4 mr-2" />
-                    送信する
+                  <div className="space-y-2">
+                    <Label htmlFor="email">メールアドレス <span className="text-destructive">*</span></Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                      required
+                      aria-required="true"
+                      placeholder="example@example.com"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message">メッセージ <span className="text-destructive">*</span></Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={e => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                      className="min-h-[120px]"
+                      required
+                      aria-required="true"
+                      placeholder="お問い合わせ内容をご記入ください"
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    <Send className="h-4 w-4 mr-2" aria-hidden="true" />
+                    {isSubmitting ? '送信中...' : '送信する'}
                   </Button>
                 </form>
               </CardContent>
@@ -87,4 +177,6 @@ export default function Contact() {
       </div>
     </section>
   );
-}
+};
+
+export default Contact;
