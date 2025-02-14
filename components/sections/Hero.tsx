@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 const Hero = () => {
   return (
     <section 
-      className="min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-background to-accent"
+      className="min-h-screen flex flex-col items-center justify-center relative"
       aria-label="ヒーローセクション"
     >
       <motion.div

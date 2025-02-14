@@ -14,19 +14,22 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.2 }}
     viewport={{ once: true }}
+    className="h-full"
   >
     <Card className="overflow-hidden h-full flex flex-col">
-      <Image
-        src={project.image}
-        alt={`${project.title}のスクリーンショット`}
-        width={600}
-        height={300}
-        className="h-48 w-full object-cover"
-        loading="lazy"
-      />
-      <CardContent className="pt-6 flex-grow">
+      <div className="relative aspect-[16/9]">
+        <Image
+          src={project.image}
+          alt={`${project.title}のスクリーンショット`}
+          fill
+          className="object-cover"
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+      <CardContent className="flex-grow p-6">
         <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-        <p className="text-muted-foreground mb-4">{project.description}</p>
+        <p className="text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <Badge key={tag} variant="secondary" className="rounded-full">
@@ -35,12 +38,13 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           ))}
         </div>
       </CardContent>
-      <CardFooter className="flex gap-4">
+      <CardFooter className="flex gap-4 p-6 pt-0">
         <Button variant="outline" size="sm" asChild>
           <a
             href={`https://github.com/username/${project.id}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="flex items-center"
             tabIndex={0}
             aria-label={`${project.title}のソースコードを見る`}
           >
@@ -53,6 +57,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             href={`https://demo.example.com/${project.id}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="flex items-center"
             tabIndex={0}
             aria-label={`${project.title}のデモを見る`}
           >

@@ -2,7 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { Monitor, Smartphone, Lightbulb } from 'lucide-react';
+import Link from 'next/link';
 
 interface Feature {
   id: string;
@@ -34,8 +36,8 @@ const features: Feature[] = [
 
 const About = () => {
   return (
-    <section 
-      className="py-20 px-4 bg-background"
+    <section
+      className="py-20 px-4"
       aria-label="自己紹介"
       id="about"
     >
@@ -77,6 +79,17 @@ const About = () => {
             </motion.li>
           ))}
         </ul>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <Button asChild>
+            <Link href="/about">詳細はこちら</Link>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Progress } from '@/components/ui/progress';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface Skill {
   id: string;
@@ -20,12 +22,12 @@ const skills: Skill[] = [
 
 const Skills = () => {
   return (
-    <section 
-      className="py-20 px-4 bg-accent"
-      aria-label="スキルセット"
+    <section
+      className="py-20 px-4"
+      aria-label="スキル"
       id="skills"
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,6 +65,17 @@ const Skills = () => {
             </motion.li>
           ))}
         </ul>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <Button asChild>
+            <Link href="/skills">スキル一覧を見る</Link>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

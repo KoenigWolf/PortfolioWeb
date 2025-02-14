@@ -1,7 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import ClientBody from '@/components/ClientBody';
+import Header from '@/components/sections/Header';
+import { Footer } from '@/components/sections/Footer';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,7 +21,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className={inter.variable}>
-      <ClientBody>{children}</ClientBody>
+      <body className="min-h-screen bg-background">
+        <div className="relative flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 }
