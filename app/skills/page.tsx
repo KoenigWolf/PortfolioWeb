@@ -16,7 +16,6 @@ export const metadata: Metadata = {
 export default function SkillsPage() {
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">Skills</h1>
       <Suspense fallback={<Loading />}>
         <SkillsSection />
       </Suspense>
