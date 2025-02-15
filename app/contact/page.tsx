@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import ContactSection from '@/components/sections/Contact'
-import Loading from './loading'
+import Loading from '../loading'
 
 export const metadata: Metadata = {
   title: 'Contact | ポートフォリオ',

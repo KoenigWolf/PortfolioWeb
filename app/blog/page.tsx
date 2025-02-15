@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { Blog } from '@/components/sections/Blog'
-import Loading from './loading'
+import Loading from '../loading'
 
 export const metadata: Metadata = {
   title: 'Blog | ポートフォリオ',
@@ -16,7 +16,6 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">Blog</h1>
       <Suspense fallback={<Loading />}>
         <Blog />
       </Suspense>

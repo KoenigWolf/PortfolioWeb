@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import SkillsSection from '@/components/sections/Skills'
-import Loading from './loading'
+import Loading from '../loading'
 
 export const metadata: Metadata = {
   title: 'Skills | ポートフォリオ',

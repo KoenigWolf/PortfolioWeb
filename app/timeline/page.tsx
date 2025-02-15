@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { TimelineSection } from '@/components/sections/Timeline'
-import Loading from './loading'
+import Loading from '../loading'
 
 export const metadata: Metadata = {
   title: 'Timeline | ポートフォリオ',
@@ -16,7 +16,6 @@ export const metadata: Metadata = {
 export default function TimelinePage() {
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">Timeline</h1>
       <Suspense fallback={<Loading />}>
         <TimelineSection />
       </Suspense>

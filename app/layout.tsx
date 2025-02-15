@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Toshiki Portfolio Web',
-  description: 'Portfolio of engineer',
+  title: 'Web Portal',
+  description: 'Webサイト',
 };
 
 export default function RootLayout({
